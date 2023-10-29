@@ -20,6 +20,9 @@ public class moveTank : MonoBehaviour
     private float moveInput;
 
     private float rotationInput; 
+
+    private bool controlsLocked = false;
+
     
     // Start is called before the first frame update
     void Start()
@@ -30,14 +33,34 @@ public class moveTank : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(controlsLocked){
+            Debug.Log("Control locked");
+            return;
+        }
         moveInput = Input.GetAxis("Vertical");
         rotationInput = Input.GetAxis("Horizontal");
 
         RotateWheels(rotationInput, moveInput);
     }
 
+    public void LockControls()
+    {
+        Debug.Log("Locking Controls");
+        controlsLocked = true;
+    }
+
+    public void UnlockControls()
+    {
+        Debug.Log("Locking Controls");
+        controlsLocked = false;
+    }
+
     void FixedUpdate()
     {
+        if(controlsLocked){
+            return;
+        }
+
         MoveTankObject(moveInput);
         RotateTank(rotationInput);
     }
