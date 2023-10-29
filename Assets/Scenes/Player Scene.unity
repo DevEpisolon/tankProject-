@@ -552,6 +552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1594807990}
   maxHealth: 20
+  explosionPrefab: {fileID: 7771330041133891334, guid: 61d8f0429a1b64c58ad7b6f25c0424b8, type: 3}
 --- !u!1 &381853191 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5219878769216273878, guid: dc84a58afe1344547a230a5cb3c072c8, type: 3}
