@@ -6,8 +6,6 @@ public class CameraPosition : MonoBehaviour
 
     private void Update()
     {
-        // Match the camera's position and rotation to the tank's arm
-        // transform.position = tankArm.position;
         transform.rotation = tankArm.rotation;
     }
 }

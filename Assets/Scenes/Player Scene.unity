@@ -650,7 +650,7 @@ MonoBehaviour:
   topDownCamera: {fileID: 218490602}
   playerCamera: {fileID: 963194227}
   target: {fileID: 3011469965442809911}
-  offset: {x: 0, y: 0, z: 7}
+  offset: {x: 0, y: 2, z: 7}
   smoothSpeed: 0.125
 --- !u!1 &604868180
 GameObject:
