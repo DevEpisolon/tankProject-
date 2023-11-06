@@ -7,6 +7,7 @@ using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
+using System.Threading.Tasks;
 
 public class testLobby : MonoBehaviour
 {
@@ -30,21 +31,45 @@ public class testLobby : MonoBehaviour
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
         playerName = "stephen" + UnityEngine.Random.Range(10, 99);
         Debug.Log(playerName);
-        CreateRelay();
+
+        //test
+        async void test()
+        {
+            string code = await CreateRelay();
+            joinRelay(code);
+        }
+        test();  
     }
 
-    private async void CreateRelay()
+   
+
+    private async Task<string> CreateRelay()
     {
         try {
             Allocation allocation = await RelayService.Instance.CreateAllocationAsync(3);
 
             string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
             Debug.Log(joinCode);
+            return joinCode;
         }
         catch (RelayServiceException error) {
             Debug.LogError(error.Message);
+            return "";
         }
-        
+    }
+
+    private async void joinRelay(string joinCode)
+    {
+        try
+        {
+            Debug.Log("Connecting to relay: " + joinCode);
+            await RelayService.Instance.JoinAllocationAsync(joinCode);
+        }
+        catch (RelayServiceException error)
+        {
+            Debug.LogError(error.Message);
+        }
+
     }
 
     private void Update(){ 
